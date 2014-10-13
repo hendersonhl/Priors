@@ -2,15 +2,16 @@
 %%%%%%%%%%%% Preamble %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Word target: 2,000 words (~ 2,081 currently)
+% Word target: 2,031 words 
 
 % Outline:
-% I. Introduction (~459 currently and checked)
-% II. GCE estimator (~385 currently and checked)
-% III. MP-GCE estimator (~405 currently and checked) 
-% IV. Sampling Experiments (~327 currently and checked) 
-% V. Results (500 words) (~412 currently and checked) 
-% VI. Conclusions (~93 currently and checked)
+% Abstract: 92 words
+% I. Introduction: 454 words
+% II. GCE estimator: 375 words
+% III. MP-GCE estimator: 392 words
+% IV. Sampling Experiments: 327 words
+% V. Results: 390 words
+% VI. Conclusions: 93 words
 
 % Declare document class and miscellaneous packages
 \documentclass{elsarticle}
@@ -63,7 +64,7 @@ American University}
 \begin{abstract}
 Prior information can improve inference, but in the social sciences observing such
 information is quite rare.
-We develop here a new way to incorporate prior information within an 
+We develop a new way to incorporate prior information within an 
 Information-Theoretic (IT) estimation framework. 
 The estimator considers a wide range of potential priors and then uses a simple statistic 
 to choose the optimal model. 
@@ -75,8 +76,8 @@ performance gains of our method relative to its classical competitors.
 
 % Keywords and JEL codes
 \begin{keyword}
-Entropy \sep Information \sep Maximum Entropy \sep 
-Generalized Maximum Entropy \sep Generalized Cross Entropy \sep Priors \\
+Entropy \sep Generalized Cross Entropy  \sep Generalized Maximum Entropy 
+\sep Information \sep Maximum Entropy \sep Priors \\
 \textit{JEL codes}: C13 \sep C14  
 \end{keyword}
 
@@ -91,47 +92,55 @@ Generalized Maximum Entropy \sep Generalized Cross Entropy \sep Priors \\
 \section{Introduction}
 \label{sec: intro}
 
-Information-Theoretic (IT) methods of inference were developed as a means to relax 
-classical statistical assumptions in the estimation of both linear and non-linear models.The Generalized Maximum Entropy (GME) estimator is an IT estimator that assumes 
-minimal, or no, knowledge of statistical error structure and treats both signal and noise 
+Information-Theoretic (IT) methods of inference allow researchers to relax 
+classical statistical assumptions in the estimation of both linear and non-linear models.
+The Generalized Maximum Entropy (GME) estimator is an IT estimator that assumes 
+minimal knowledge of statistical error structure and treats both signal and noise 
 as unknown quantities. 
-Thus, regardless of the sample size the problem is always under-determined: there are 
+Thus, regardless of sample size the problem is always under-determined -- there are 
 more unknown quantities than observed sample points. 
-A well-known approach for solving such problems is Maximum Entropy (ME) formalism 
+The Maximum Entropy (ME) formalism is a well-known approach for solving such problems
 \citep{jaynes1957a, jaynes1957b}. 
-The GME estimator builds on ME formalism and uses Boltzmann-Shannon entropy 
-\citep{shannon1948} as the objective functional.
-Primarily when applied to ill-posed and ill-behaved problems, the GME estimator 
-outperforms its traditional counterparts (e.g.\ ordinary least squares and maximum likelihood) 
-for all finite samples and, as such, is used frequently in the social and natural sciences\citep{golan1996}. 
+The GME estimator builds on the ME formalism and uses the Boltzmann-Shannon entropy 
+\citep{shannon1948} as the objective function.
+When applied to ill-behaved problems, the GME estimator 
+outperforms its traditional counterparts (e.g., ordinary least squares and maximum likelihood) 
+for all finite samples and, as such, is used frequently in the social and natural sciences
+\citep{golan1996}. 
 
 The Generalized Cross Entropy (GCE) estimator generalizes GME by allowing 
 researchers to incorporate prior information. 
-This is done by substituting the Shannon entropy functional with the Kullback-Liebler 
-divergence measure \citep{kullback1951}.  
+The incorporation of prior information is done by substituting the Shannon entropy 
+functional with the Kullback-Liebler divergence measure \citep{kullback1951}.  
 Since the resulting problem is also under-determined, there are infinitely many solutions. 
 Out of all possible solutions, the GCE estimator chooses the one that is closest to the 
-chosen prior (in an informational sense).The GME and GCE estimators are identical when uniform priors are used. 
-However, when informative priors are used, the performance of the GCE estimator relative 
-to GME improves in terms of mean squared errors. 
-Unfortunately, in the social sciences such prior information is almost always missing. 
-Is there a way to uncover these priors? 
-If one can, then it is possible to improve the performance of the GCE estimator for all 
+chosen prior (in an informational sense).
+The GME and GCE estimators are identical when uniform priors are used. 
+However, when informative priors are used, the GCE estimator outperforms the GME
+in terms of mean squared errors. 
+Unfortunately, in the social sciences prior information is frequently missing. 
+We ask if there is a way to uncover these priors.
+If possible, we can improve the performance of the GCE estimator for all 
 finite data. 
 
 In this paper we propose a new approach for uncovering prior information. 
 Since priors are unknown \emph{a priori}, we circumvent the issue by specifying a 
-space of priors that covers (almost) all possible combinations. 
+set of priors that covers (almost) all possible combinations. 
 Incorporating this set of priors within a GCE framework and using the GCE criterion to 
 select the ``optimal'' prior, we are able to improve the performance of the IT estimator 
-relative to all other estimators and for all finite samples.We demonstrate this via a large number of sampling experiments. 
-Since all properties of the GCE estimator are already known \citep{golan1996, 
-mittelhammer2000}, we concentrate here only on small sample performance. 
-% HH: If all properties are known, then why do it?
+relative to all other estimators and for all finite samples.
+We demonstrate this via a large number of sampling experiments. 
+Since the properties of the GCE estimator are already known \citep{golan1996, 
+mittelhammer2000}, we concentrate on demonstrating small sample performance. 
 Finally, while our approach is generic for all functional forms, we demonstrate it here 
 only for the linear statistical model.
 
-In Section \ref{sec: gce} we provide a brief summary of GCE formalism and in Section \ref{sec: mp-gce} we outline our estimator. Section \ref{sec: mce} details the sampling experiments through which we compare the performance of our estimation strategy to the leading competing estimators. In Section \ref{sec: results} we describe our results and Section \ref{sec: conc}
+In Section \ref{sec: gce} we provide a brief summary of the GCE formalism and 
+in Section \ref{sec: mp-gce} we outline our estimator. 
+Section \ref{sec: mce} details the sampling experiments through which we 
+compare the performance of our estimation strategy to the leading competing 
+estimators. 
+In Section \ref{sec: results} we describe our results and Section \ref{sec: conc}
 concludes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,6 +153,7 @@ concludes.
 Consider the following linear regression model: 
 \begin{equation}
 \mathbf{y} = \mathbf{X\beta} + \mathbf{\varepsilon}
+\label{eq: lrm}
 \end{equation}
 
 \noindent
@@ -152,7 +162,7 @@ dependent variable, $\mathbf{X}$ is a $T\times K$ matrix of exogenous
 variables, $\mathbf{\beta}$ is a $K$-dimensional vector of unknown 
 parameters, and $\mathbf{\varepsilon}$ is a $T$-dimensional vector of 
 random errors with mean zero.%
-\footnote{Vectors will be bolded and matrices will be capitalized throughout.}
+\footnote{Vectors are bolded and matrices are capitalized throughout.}
 Each $\mathbf{\beta}_k$ and $\mathbf{\varepsilon}_t$ in the GCE 
 framework is typically viewed as the mean value of some well-defined 
 random variable, which we denote as $\mathbf{z}_k$ and $\mathbf{v}_t$, 
@@ -160,13 +170,12 @@ respectively.
 Accordingly, let $\mathbf{p}_k$ be an $M$-dimensional proper 
 probability distribution defined on the support $\mathbf{z}_k$ such that 
 $\mathbf{\beta}_k = \sum_m p_{km}z_{km} = \mathbf{z}_k' 
-\mathbf{p}_k$ where the prime symbol denotes transpose.
-Similarly, where $\mathbf{v}_t$ is symmetric about zero, let $\mathbf{w}_t$ 
-be a $J$-dimensional proper probability distribution defined on $\mathbf{v}_t$ 
-such that $\mathbf{\varepsilon}_t = \sum_j w_{tj}z_{tj} = \mathbf{v}_t' 
-\mathbf{w}_t$.
+\mathbf{p}_k$ where $\mathbf{z}_k'$ denotes the transpose of $\mathbf{z}_k$.
+Similarly, $\mathbf{w}_t$ is a $J$-dimensional proper probability distribution defined on 
+the symmetric about zero $\mathbf{v}_t$ such that $\mathbf{\varepsilon}_t = 
+\sum_j w_{tj}v_{tj} = \mathbf{v}_t' \mathbf{w}_t$.
 
-The linear regression model can then be reparameterized as follows:
+Eq.\ (\ref{eq: lrm}) can then be reparameterized as follows:
 \begin{equation}
 \mathbf{y} = \mathbf{X\beta} + \mathbf{\varepsilon} = 
 \mathbf{X Z p} + \mathbf{V w}
@@ -174,17 +183,17 @@ The linear regression model can then be reparameterized as follows:
 \end{equation}
 
 \noindent
-where, letting $\mathbf{z}=[\mathbf{z}_1' ~ \mathbf{z}_2' ~ \cdots ~ 
+where $\mathbf{z}=[\mathbf{z}_1' ~ \mathbf{z}_2' ~ \cdots ~ 
 \mathbf{z}_K' ]'$ and $\mathbf{v}=[\mathbf{v}_1' ~ \mathbf{v}_2' ~ 
 \cdots ~ \mathbf{v}_T' ]'$, 
 $\mathbf{Z}= (\mathbf{I}_K \otimes \mathbf{1}_M')\mathbf{z}$ and
-$\mathbf{V}= (\mathbf{I}_T \otimes \mathbf{1}_J')\mathbf{v}$
-where $\mathbf{1}$ denotes a vector of ones, $\mathbf{I}$ is the 
+$\mathbf{V}= (\mathbf{I}_T \otimes \mathbf{1}_J')\mathbf{v}$, $\mathbf{1}$ 
+denotes a vector of ones, $\mathbf{I}$ is the 
 identity matrix, and $\otimes$ is the Kronecker product.
-Further, $\mathbf{p} = [\mathbf{p}_1' ~ \mathbf{p}_2' ~ \cdots ~ 
+Similarly, $\mathbf{p} = [\mathbf{p}_1' ~ \mathbf{p}_2' ~ \cdots ~ 
 \mathbf{p}_K' ]'$ and $\mathbf{w} = [\mathbf{w}_1' ~ \mathbf{w}_2' 
 ~ \cdots ~ \mathbf{w}_T' ]'$.
-The dimensions of $\mathbf{Z}$ and $\mathbf{V}$ are then 
+The dimensions of $\mathbf{Z}$ and $\mathbf{V}$ are 
 $K \times KM$ and $T \times TJ$, respectively, and the dimensions of 
 $\mathbf{p}$ and $\mathbf{w}$ are $KM \times 1$ and $TJ \times 1$, 
 respectively.%
@@ -193,7 +202,6 @@ and continuous supports \citep{golan2012}, for the sake of simplicity the above
 support spaces are constructed as discrete and bounded.} 
 We then estimate $\beta$ with minimal assumptions; treating the errors as an additional 
 set of unknown quantities.
-This is an under-determined problem. 
 
 Let $\mathbf{q}$ be a $KM$-dimensional vector of prior weights for the 
 parameters $\mathbf{\beta}$ with prior mean $\mathbf{Zq}$.
@@ -241,18 +249,15 @@ the GME estimator, which instead maximizes $H(\mathbf{p},\mathbf{w})
 \section{Multi-Prior Generalized Cross Entropy Estimator}
 \label{sec: mp-gce}
 
-As with all problems of inference, a central question pertains to the choice of 
-priors. 
+As with all problems of inference, the choice of priors remains a central question.
 However, for many applications across the social sciences prior information 
 does not exist. 
-While researchers typically select uniform priors in these situations, more 
-informative priors can significantly improve small sample performance.
+While researchers typically select uniform, or otherwise uninformative, priors in these 
+situations, more informative priors can significantly improve small sample performance.
 One way to overcome the problem empirically is to specify a set of all (or 
 nearly all) possible priors and utilize an appropriate criterion to choose one of 
 the solutions.
-In what follows we elaborate on this multi-prior GCE estimator (MP-GCE); first 
-elaborating on our chosen criterion and then discussing our strategy for specifying 
-alternative priors.
+In what follows we elaborate on this multi-prior GCE estimator (MP-GCE).
 
 Given a set of priors, we need to choose a rule that selects the best prior that is 
 consistent with our observed sample. 
@@ -263,7 +268,7 @@ Stated differently, there are as many ``optimal'' solutions as priors and, follo
 of information theory, we choose the solution that minimizes the Kullback-Leibler criterion 
 $I(\cdot)$. 
 This is the solution where the \emph{a priori} unknown prior is closest to the observed 
-data and, as such, the MP-GCE estimator identifies the ``best'' prior out of the complete 
+data and, as such, the MP-GCE estimator identifies the ``best'' prior out of the 
 set of potential priors. 
 While computationally intensive, we demonstrate below that a relatively small 
 number of priors is sufficient for the MP-GCE estimator to outperform its 
@@ -291,7 +296,7 @@ Notably, as $\rho \to 0$ all priors approach uniform and as $|\rho| \to
 \infty$ the prior means approach the boundaries of the support space.}
 Incorporating the uniform prior $[1/M ~ 1/M ~ \cdots ~ 1/M]$, we have a total
 of $M! + 1$ priors.
-The MP-GCE estimator in this case minimizes Eq.\ (\ref{eq: ce}) subject 
+The MP-GCE estimator then minimizes Eq.\ (\ref{eq: ce}) subject 
 to Eqs.\ (\ref{eq: glm})-(\ref{eq: pp2}) after inserting into $\mathbf{q}$ 
 each of the $M! + 1$ priors.
 
@@ -304,8 +309,7 @@ each of the $M! + 1$ priors.
 
 For each replication in the sampling experiments our objective is to minimize 
 $I(\cdot)$ subject to the data consistency and proper probability constraints 
-for alternative choices of $\mathbf{q}$, the prior weights for the parameter 
-$\mathbf{\beta}$. 
+for alternative choices of $\mathbf{q}$. 
 To measure the performance of each prior we focus on the mean squared 
 error MSE$(\hat{\mathbf{\beta}}) = E \| \hat{\mathbf{\beta}}- 
 \mathbf{\beta}\|^2$.
@@ -313,17 +317,16 @@ To establish a basis for selecting among alternative priors, the relationship
 between MSE$(\hat{\mathbf{\beta}})$ and $E[I(\cdot)]$ is examined.
 This relationship is considered for different sample sizes, levels of noise, 
 and degrees of correlation among covariates.
-Further, the performance of our MP-GCE estimator is referenced 
-against the OLS and GME estimators.
+Further, we include the performance of the OLS and GME estimators for 
+comparison with the MP-GCE estimator.
 
 Consider a baseline scenario where $\mathbf{X}$ in Eq.\ (\ref{eq: reparm})
 is a $10 \times 3$ design matrix where $\mathbf{x}_k \sim 
 N(0,1)$, $\mathbf{\beta}= [\beta_1 ~ \beta_2 ~ \beta_3]'=[1 ~ -3 ~ 2]'$, 
 and $\mathbf{\varepsilon} \sim N(0,1)$.
 In order to control correlation among covariates, the condition
-number $\kappa(\mathbf{X}'\mathbf{X})=1$ is specified \textit{a priori}
-by appropriately replacing the eigenvalues in the singular value 
-decomposition of $\mathbf{X}$.%
+number $\kappa(\mathbf{X}'\mathbf{X})=1$ is specified by appropriately replacing the 
+eigenvalues in the singular value decomposition of $\mathbf{X}$.%
 \footnote{See \citet[pg.\ 133]{golan1996} and references therein for 
 details.}
 For $M=J=3$ points, the support vector for $\mathbf{p}_k$ is 
@@ -337,9 +340,9 @@ Let $\mathbf{q} = [\mathbf{q}_1' ~
 \mathbf{q}_2' ~ \mathbf{q}_3']'$ represent prior information on the 
 respective elements of the parameter vector.
 As in Section \ref{sec: mp-gce}, we let $\mathbf{q}_1 = \mathbf{q}_3 = 1/M 
-= 1/3$ (i.e.\ uniform) and estimate the model using $\rho=0.5$  in the 
+= 1/3$ (i.e., uniform) and estimate the model using $\rho=0.5$  in the 
 discussed alternative specifications of $\mathbf{q}_2$ denoted in Table \ref{tbl: priors}.
-We use uniform priors on the error term throughout (i.e.\ $\mathbf{u} = 1/J = 1/3$).
+We use uniform priors on the error term throughout (i.e., $\mathbf{u} = 1/J = 1/3$).
 Finally, the experiment is conducted with $N=1,000$ replications.
 
 % Priors
@@ -363,15 +366,15 @@ Label & $\mathbf{q_2}$  \\ \hline
 7 & $[\sqrt{1/3} ~ \sqrt{1/3} ~ \sqrt{1/3}]/\sum_{m=1}^3 \sqrt{m}$ \\\hline}
 \normalsize
 
-As mentioned, we also vary the sample sizes, the level of noise, and the degree of 
+As mentioned, we vary the sample sizes, the level of noise, and the degree of 
 correlation among covariates in the experiments.
 Beyond $T=10$ we consider sample sizes of $T=20, 50, 100, \text{and } 200$. 
-Further, we increase the level of noise in one set of experiments to  
+We increase the level of noise in one set of experiments to  
 $\mathbf{\varepsilon} \sim N(0,5)$.
 Finally, we let $\kappa(\mathbf{X}'\mathbf{X})=100$, which represents a moderately 
 ill-conditioned design matrix.
-This gives three sets of experiments (i.e.\ well-behaved, noisy, and collinear), each of
-which considers five different sample sizes.
+This gives three sets of experiments that we label well-behaved, noisy, and collinear, 
+each of which considers five different sample sizes.
 Table \ref{tbl: exp} summarizes these experiments.
 
 % Sampling Experiments
@@ -416,15 +419,15 @@ Experiment Set & \multicolumn{1}{c}{$T$} &
 Figures \ref{fig: B1}-\ref{fig: MSEB} present the results of the sampling experiments.
 For the baseline scenario, Figure \ref{fig: B1} plots the replication-average of 
 $I(\mathbf{p_2}, \mathbf{q_2}) = \mathbf{p_2}'\ln (\mathbf{p_2}/
-\mathbf{q_2})$ (i.e.\ the cross entropy associated with $\beta_2$) on 
-MSE$(\hat{\beta}_2)$  for alternative choices of $\mathbf{q_2}$.
+\mathbf{q_2})$ (i.e., the cross entropy associated with $\beta_2$) on 
+MSE$(\hat{\beta}_2)$ for alternative choices of $\mathbf{q_2}$.
 Figure \ref{fig: B} instead plots the replication-average of 
 $I(\mathbf{p}, \mathbf{q}) = \mathbf{p}'\ln (\mathbf{p}/
-\mathbf{q})$ (i.e.\ the cross entropy associated with $\mathbf{\beta}$) on 
+\mathbf{q})$ (i.e., the cross entropy associated with $\mathbf{\beta}$) on 
 MSE$(\hat{\beta})$  for alternative choices of $\mathbf{q_2}$.
 Table \ref{tbl: priors} provides the prior that corresponds to each label.
-These figures depict our first core result: we find a strong positive relationship between 
-$I(\cdot)$ and MSE in both cases.
+These figures depict our first core result.
+We find a strong positive relationship between $I(\cdot)$ and MSE in both cases.
 While we only consider alternative choices of $\mathbf{q_2}$, this result 
 confirms that choosing the prior that minimizes the appropriate variant of $I(\cdot)$ will 
 not only improve efficiency in the estimation of $\beta_2$, but also $\mathbf{\beta}$.
@@ -456,19 +459,19 @@ $\mathbf{\beta}$.}
 \end{figure}
 
 Figure \ref{fig: MSEB1} plots MSE($\hat{\beta}_2$) on sample size for each 
-experiment set (i.e.\ well-behaved, noisy, and collinear) and estimator (i.e.\ MP-GCE, 
+experiment set (i.e., well-behaved, noisy, and collinear) and estimator (i.e., MP-GCE, 
 GME, and OLS).
 Figure \ref{fig: MSEB} is identical to Figure \ref{fig: MSEB1} except that it plots 
 MSE($\mathbf{\hat{\beta}}$) instead of MSE($\hat{\beta}_2$).
 The prior used by MP-GCE in Figures \ref{fig: MSEB1} and \ref{fig: MSEB} is that which 
 minimizes $I(\mathbf{p_2}, \mathbf{q_2})$ and $I(\mathbf{p}, \mathbf{q})$, respectively.
-The figures are qualitatively similar and demonstrate a second core result: in each 
-experiment MP-GCE outperforms GME and GME outperforms OLS in terms of MSE.
-The efficiency gains are non-negligible: for example, for the baseline scenario in 
-Figure \ref{fig: MSEB1} GME reduces MSE by 19 percent relative to OLS 
-and MP-GCE reduces MSE by 16 percent relative to GME.
+The figures are qualitatively similar and demonstrate a second core result.
+In each experiment MP-GCE outperforms GME and GME outperforms OLS in terms of MSE.
+The efficiency gains are non-negligible.
+For example, for the baseline scenario in Figure \ref{fig: MSEB1} GME reduces MSE by 
+19 percent relative to OLS and MP-GCE reduces MSE by 16 percent relative to GME.
 Naturally, the estimators converge in MSE as sample size increases, but in some cases
-(e.g.\ the noisy case) the efficiency gains persist even for larger sample sizes.
+(e.g., the noisy case) the efficiency gains persist even for larger sample sizes.
 
 % MSEB1 figure
 \begin{figure}[htbp]
@@ -480,7 +483,7 @@ GME and GME outperforms OLS in terms of the mean squared error of $\hat{\beta}_2
 \label{fig: MSEB1}
 \end{figure}
 
-% MSEB1 figure
+% MSEB figure
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{MSEB.pdf}
@@ -491,23 +494,19 @@ GME and GME outperforms OLS in terms of the mean squared error of $\hat{\beta}$.
 \end{figure}
 
 We conclude this section with a brief discussion of additional sampling 
-experiments conducted. 
-First, we increased the number of regressors from 3 to 7 and did not observe a 
-qualitative change in our results in any case.
-Second, we incorporated alternative priors on $\beta_3$ and found only 
-modest MSE reductions for the baseline and noisy cases, but 
-non-negligible reductions for the collinear case (e.g.\ MP-GCE witnessed 
-MSE$(\mathbf{\hat{\beta}})=7.85$ for $T=10$).%
-\footnote{In combination with the $M! + 1$ priors on $\beta_2$, here we 
-considered the same $M! + 1$ priors on $\beta_3$.
-Thus, for $M=3$, these experiments used a total of $(M! + 1)\times (M! + 1) 
+experiments conducted, which included increasing the number of regressors,
+doubling the parameter vector, and incorporating alternative priors on $\beta_3$.
+The most notable of these experiments is the incorporation of alternative priors.
+In combination with the $M! + 1$ priors on $\beta_2$, we considered the 
+same $M! + 1$ priors on $\beta_3$.%
+\footnote{Thus, for $M=3$, these experiments used a total of $(M! + 1)\times (M! + 1) 
 = 49$ alternative priors.}
-Finally, we doubled the parameter vector, which served to generate a situation 
-where the parameter support was moderately ill-specified.
-While MP-GCE continued to outperform GME, OLS outperformed both in select 
-experiments, most notably for the baseline specification.
-This final experiment underscores the importance of appropriately specifying
-the parameter support vector.
+We found only modest MSE reductions for the baseline and noisy cases, but
+non-negligible MSE reductions for the collinear case.
+For example, MP-GCE witnessed MSE$(\mathbf{\hat{\beta}})=7.85$ for $T=10$,
+which represents a 38 percent MSE reduction relative to the MP-GCE results presented
+in Figure \ref{fig: MSEB}.
+Thus, further efficiency gains can be made by considering additional priors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% Conclusions %%%%%%%%%%%%%
