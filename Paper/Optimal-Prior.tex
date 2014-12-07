@@ -33,6 +33,7 @@
 \usepackage[all]{nowidow}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage[top=1.5in, bottom=1.5in, left=1.9in, right=1.9in]{geometry}
 \urlstyle{rm}
 
 %Hyper-references
@@ -62,21 +63,27 @@ American University}
 
 % Abstract
 \begin{abstract}
-Prior information can improve inference, but in the social sciences observing such
-information is quite rare.
-We develop a new way to incorporate prior information within an 
-Information-Theoretic (IT) estimation framework. 
-The estimator considers a wide range of potential priors and then uses a simple statistic 
-to choose the optimal model. 
-The optimal model is the one where the informational distance between a certain prior and 
-the solution is minimized.
-Through a large number of sampling experiments, we demonstrate the small sample 
-performance gains of our method relative to its classical competitors.
+We develop a new way to incorporate prior information within an Information-Theoretic (IT) 
+estimation framework.
+The estimator considers many potential priors and uses a simple statistic to choose the optimal 
+model. 
+Our method outperforms its competitors for all finite data. 
+%Prior information can significantly improve inference, but in the social sciences observing 
+%such information is quite rare. 
+%Incorporating incorrect priors may cause considerable biases. 
+%We develop a new way to incorporate prior information within an Information-Theoretic (IT) 
+%estimation framework. 
+%The estimator considers a wide range of potential priors and then uses a simple statistic to 
+%choose the optimal model. 
+%The optimal model is the one where the informational distance between a certain prior and 
+%the solution is minimized. 
+%Through a large number of sampling experiments, we demonstrate the small sample 
+%performance gains of our method relative to its classical competitors.
 \end{abstract}
 
 % Keywords and JEL codes
 \begin{keyword}
-Entropy \sep Generalized Cross Entropy  \sep Generalized Maximum Entropy 
+Generalized Cross Entropy  \sep Generalized Maximum Entropy 
 \sep Information \sep Maximum Entropy \sep Priors \\
 \textit{JEL codes}: C13 \sep C14  
 \end{keyword}
@@ -92,55 +99,56 @@ Entropy \sep Generalized Cross Entropy  \sep Generalized Maximum Entropy
 \section{Introduction}
 \label{sec: intro}
 
-Information-Theoretic (IT) methods of inference allow researchers to relax 
-classical statistical assumptions in the estimation of both linear and non-linear models.
-The Generalized Maximum Entropy (GME) estimator is an IT estimator that assumes 
-minimal knowledge of statistical error structure and treats both signal and noise 
-as unknown quantities. 
+Information-Theoretic (IT) methods of inference allow researchers to relax classical 
+statistical assumptions in the estimation of both linear and non-linear models. 
+The Generalized Maximum Entropy (GME) estimator is a member of the IT family of 
+estimators that assumes minimal knowledge of the statistical error structure and treats 
+both signal and noise as unknown quantities. 
 Thus, regardless of sample size the problem is always under-determined -- there are 
 more unknown quantities than observed sample points. 
-The Maximum Entropy (ME) formalism is a well-known approach for solving such problems
-\citep{jaynes1957a, jaynes1957b}. 
-The GME estimator builds on the ME formalism and uses the Boltzmann-Shannon entropy 
-\citep{shannon1948} as the objective function.
-When applied to ill-behaved problems, the GME estimator 
-outperforms its traditional counterparts (e.g., ordinary least squares and maximum likelihood) 
-for all finite samples and, as such, is used frequently in the social and natural sciences
-\citep{golan1996}. 
+The Maximum Entropy (ME) formalism is a well-known approach for solving such 
+problems \citep{jaynes1957a, jaynes1957b}. 
+It uses the Boltzmann-Shannon entropy \citep{shannon1948} as the criterion to select 
+one of the infinitely many solutions. 
+The GME estimator also uses the Boltzmann-Shannon entropy and generalizes the ME 
+formalism for solving a larger class of problems. 
+When applied to ill-behaved problems and problems with small or complex data, the 
+GME estimator outperforms its traditional counterparts (e.g., ordinary least squares and 
+maximum likelihood) for all finite samples \citep{golan1996}. 
 
-The Generalized Cross Entropy (GCE) estimator generalizes GME by allowing 
-researchers to incorporate prior information. 
-The incorporation of prior information is done by substituting the Shannon entropy 
-functional with the Kullback-Liebler divergence measure \citep{kullback1951}.  
-Since the resulting problem is also under-determined, there are infinitely many solutions. 
-Out of all possible solutions, the GCE estimator chooses the one that is closest to the 
-chosen prior (in an informational sense).
-The GME and GCE estimators are identical when uniform priors are used. 
-However, when informative priors are used, the GCE estimator outperforms the GME
-in terms of mean squared errors. 
-Unfortunately, in the social sciences prior information is frequently missing. 
-We ask if there is a way to uncover these priors.
-If possible, we can improve the performance of the GCE estimator for all 
-finite data. 
+The Generalized Cross Entropy (GCE) estimator generalizes the GME by incorporating 
+prior information. 
+This is done by substituting the Shannon entropy functional with the Kullback-Liebler 
+divergence measure \citep{kullback1951}. 
+In this case, out of all possible solutions, the GCE estimator chooses the one that is 
+closest (in an informational sense) to the chosen prior. 
+Though the GCE estimator is identical to the GME for uniform (un-informed) priors, when 
+informative priors are used, it outperforms the GME under all criteria. 
+Unfortunately, in the social sciences prior information is frequently missing or may be 
+known only with much uncertainty. 
+Thus, rather than search for priors that we cannot attain, we propose a way to 
+incorporate a whole class of potential priors within our estimator. 
+If one of these priors is close to the true (unknown) one, the performance of our 
+estimator will improve for all finite data. 
 
-In this paper we propose a new approach for uncovering prior information. 
-Since priors are unknown \emph{a priori}, we circumvent the issue by specifying a 
-set of priors that covers (almost) all possible combinations. 
+In this paper we propose a new approach for incorporating useful prior information 
+even when that information is not known. 
+Since priors are often unknown \emph{a priori}, we circumvent the issue by specifying a 
+set of priors that covers (almost) all possible values over the parameter space. 
 Incorporating this set of priors within a GCE framework and using the GCE criterion to 
-select the ``optimal'' prior, we are able to improve the performance of the IT estimator 
-relative to all other estimators and for all finite samples.
+select the ``optimal'' prior, we are able to improve the performance of this IT estimator 
+relative to all other estimators and for all finite samples. 
 We demonstrate this via a large number of sampling experiments. 
 Since the properties of the GCE estimator are already known \citep{golan1996, 
 mittelhammer2000}, we concentrate on demonstrating small sample performance. 
 Finally, while our approach is generic for all functional forms, we demonstrate it here 
 only for the linear statistical model.
 
-In Section \ref{sec: gce} we provide a brief summary of the GCE formalism and 
-in Section \ref{sec: mp-gce} we outline our estimator. 
-Section \ref{sec: mce} details the sampling experiments through which we 
-compare the performance of our estimation strategy to the leading competing 
-estimators. 
-In Section \ref{sec: results} we describe our results and Section \ref{sec: conc}
+In Section \ref{sec: gce} we provide a brief summary of the GCE formalism and in 
+Section \ref{sec: mp-gce} we outline our estimator. 
+Section \ref{sec: mce} details the sampling experiments through which we compare 
+the performance of our estimation strategy to the leading competing estimators. 
+In Section \ref{sec: results} we describe our results and Section \ref{sec: conc} 
 concludes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,7 +208,7 @@ respectively.%
 \footnote{While it is possible to construct unbounded 
 and continuous supports \citep{golan2012}, for the sake of simplicity the above 
 support spaces are constructed as discrete and bounded.} 
-We then estimate $\beta$ with minimal assumptions; treating the errors as an additional 
+We then estimate $\beta$ with minimal assumptions, treating the errors as an additional 
 set of unknown quantities.
 
 Let $\mathbf{q}$ be a $KM$-dimensional vector of prior weights for the 
@@ -249,30 +257,27 @@ the GME estimator, which instead maximizes $H(\mathbf{p},\mathbf{w})
 \section{Multi-Prior Generalized Cross Entropy Estimator}
 \label{sec: mp-gce}
 
-As with all problems of inference, the choice of priors remains a central question.
-However, for many applications across the social sciences prior information 
-does not exist. 
+As with all problems of inference, the choice of priors remains a central question. 
+However, for many applications across the social sciences prior information is unknown. 
 While researchers typically select uniform, or otherwise uninformative, priors in these 
-situations, more informative priors can significantly improve small sample performance.
-One way to overcome the problem empirically is to specify a set of all (or 
-nearly all) possible priors and utilize an appropriate criterion to choose one of 
-the solutions.
-In what follows we elaborate on this multi-prior GCE estimator (MP-GCE).
+situations, more informative priors can significantly improve small sample performance. 
+One way to overcome the problem empirically is to specify a set of all (or nearly all) possible 
+priors and utilize an appropriate criterion to choose one of the solutions. 
+In what follows we elaborate on this Multi-Prior GCE estimator (MP-GCE).
 
 Given a set of priors, we need to choose a rule that selects the best prior that is 
 consistent with our observed sample. 
 Our MP-GCE estimator minimizes Eq.\ (\ref{eq: ce}) subject to 
-Eqs.\ (\ref{eq: glm})-(\ref{eq: pp2}) for (potentially many) alternative priors and then 
-selects the model for which $I(\cdot)$ is itself minimized. 
-Stated differently, there are as many ``optimal'' solutions as priors and, following the logic 
-of information theory, we choose the solution that minimizes the Kullback-Leibler criterion 
+Eqs.\ (\ref{eq: glm})-(\ref{eq: pp2}) for (potentially many) alternative priors and then selects 
+the model for which $I(\cdot)$ is itself minimized. 
+Stated differently, there are as many ``optimal'' solutions as priors and, following the logic of 
+information theory, we choose the solution that minimizes the Kullback-Leibler criterion 
 $I(\cdot)$. 
 This is the solution where the \emph{a priori} unknown prior is closest to the observed 
-data and, as such, the MP-GCE estimator identifies the ``best'' prior out of the 
-set of potential priors. 
-While computationally intensive, we demonstrate below that a relatively small 
-number of priors is sufficient for the MP-GCE estimator to outperform its 
-traditional counterparts.
+data and, as such, the MP-GCE estimator identifies the ``best'' prior out of the set of 
+potential priors. 
+While computationally intensive, we demonstrate below that a relatively small number of 
+priors is sufficient for the MP-GCE estimator to outperform its traditional counterparts. 
 
 The question remains as to which alternative priors to incorporate.
 Let $\mathbf{q}=[\mathbf{q}_1' ~ \mathbf{q}_2' ~ \cdots ~ \mathbf{q}_K' ]'$ where
@@ -474,7 +479,7 @@ Naturally, the estimators converge in MSE as sample size increases, but in some 
 (e.g., the noisy case) the efficiency gains persist even for larger sample sizes.
 
 % MSEB1 figure
-\begin{figure}[htbp]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.85\textwidth]{MSEB2.pdf}
 \caption{Mean squared error of $\hat{\beta}_2$ vs.\ sample size for the well-behaved,
@@ -484,7 +489,7 @@ GME and GME outperforms OLS in terms of the mean squared error of $\hat{\beta}_2
 \end{figure}
 
 % MSEB figure
-\begin{figure}[htbp]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.85\textwidth]{MSEB.pdf}
 \caption{Mean squared error of $\hat{\beta}$ vs.\ sample size for the well-behaved,
@@ -519,19 +524,29 @@ We proposed a new approach for incorporating a whole class of priors when the tr
 priors are unknown. 
 Incorporating this within an IT framework, we have shown that our MP-GCE estimator 
 outperforms its competitors for all finite data. 
-This new approach is easy to use and can be used with linear or non-linear IT methods. 
-Since this method is a generalization of the GCE estimator, all inferential statistics and 
-large sample properties are already well known. 
-We thus concentrated here on the increase in small sample efficiency, particularly for
-the linear statistical model.
+This new approach is easy to use with both linear and non-linear IT methods. 
+Since this method is a generalization of the GCE estimator, all inferential statistics and large 
+sample properties are already well known. 
+We thus concentrated here on the increase in small sample efficiency, particularly for the 
+linear statistical model.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% Acknowledgements %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgements }
+
+The authors would like to thank participants at Iowa State University's Human Resources 
+Seminar, attendees of the 84$^{th}$ Annual Meetings of the Southern Economic Association, 
+and an anonymous referee for helpful comments.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% References %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Start fresh page
-\newpage
-\cleardoublepage
+%\newpage
+%\cleardoublepage
 \singlespacing
 
 %Declare the style and file to use
